@@ -1,0 +1,1349 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>/* Global Variables */
+:root {
+  /* Colors */
+  --primary: #4F46E5;
+  --primary-dark: #3730A3;
+  --primary-light: #818CF8;
+  --secondary: #10B981;
+  --secondary-dark: #059669;
+  --accent: #F59E0B;
+  --accent-dark: #D97706;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --dark: #1F2937;
+  --dark-light: #374151;
+  --light: #F9FAFB;
+  --light-dark: #E5E7EB;
+  --grey: #9CA3AF;
+
+  /* Typography */
+  --font-primary: 'Poppins', sans-serif;
+  --font-code: 'Roboto Mono', monospace;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Light Theme (Default) */
+body {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-tertiary: #F3F4F6;
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-tertiary: #6B7280;
+  --border-color: #E5E7EB;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --bg-primary: #111827;
+  --bg-secondary: #1F2937;
+  --bg-tertiary: #374151;
+  --text-primary: #F9FAFB;
+  --text-secondary: #E5E7EB;
+  --text-tertiary: #D1D5DB;
+  --border-color: #4B5563;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+.highlight {
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: var(--primary-light);
+  opacity: 0.2;
+  z-index: -1;
+  border-radius: var(--radius-sm);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: -15px;
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  font-size: 1rem;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn.primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn.secondary:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Header */
+header {
+  background-color: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color var(--transition-normal);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-md);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.code-icon {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-right: var(--spacing-sm);
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: var(--spacing-lg);
+}
+
+nav ul li a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--primary);
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width var(--transition-fast);
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle i {
+  color: var(--text-secondary);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin: 0 var(--spacing-sm);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--light-dark);
+  transition: var(--transition-fast);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: var(--transition-fast);
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Hero Section */
+.hero {
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+}
+
+.hero .container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-lg);
+}
+
+.code-preview {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.code-header {
+  background-color: var(--dark-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: var(--spacing-xs);
+}
+
+.dot.red {
+  background-color: #FF5F56;
+}
+
+.dot.yellow {
+  background-color: #FFBD2E;
+}
+
+.dot.green {
+  background-color: #27C93F;
+}
+
+.file-name {
+  margin-left: var(--spacing-md);
+  color: var(--light);
+  font-size: 0.9rem;
+}
+
+.code-content {
+  padding: var(--spacing-md);
+  overflow-x: auto;
+}
+
+.code-content pre {
+  margin: 0;
+}
+
+.code-content code {
+  font-family: var(--font-code);
+  color: var(--light);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.code-content .tag {
+  color: #E06C75;
+}
+
+.code-content .attr {
+  color: #D19A66;
+}
+
+.code-content .value {
+  color: #98C379;
+}
+
+.code-content .highlight {
+  color: #61AFEF;
+  position: relative;
+}
+
+.code-content .highlight::after {
+  display: none;
+}
+
+/* Features Section */
+.features {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--bg-secondary);
+}
+
+.feature-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.feature-card {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.feature-card h3 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* Lessons Section */
+.lessons {
+  padding: var(--spacing-xxl) 0;
+}
+
+.lesson-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.lesson-card {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  border: 1px solid var(--border-color);
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.lesson-img {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.lesson-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.lesson-card:hover .lesson-img img {
+  transform: scale(1.05);
+}
+
+.lesson-level {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.lesson-level.beginner {
+  background-color: var(--success);
+  color: white;
+}
+
+.lesson-level.intermediate {
+  background-color: var(--warning);
+  color: white;
+}
+
+.lesson-level.advanced {
+  background-color: var(--error);
+  color: white;
+}
+
+.lesson-content {
+  padding: var(--spacing-lg);
+}
+
+.lesson-content h3 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.lesson-content p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.lesson-meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+.lesson-meta span {
+  display: flex;
+  align-items: center;
+}
+
+.lesson-meta i {
+  margin-right: var(--spacing-xs);
+}
+
+/* Playground Section */
+.playground {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--bg-secondary);
+}
+
+.code-playground {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.editor-container {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.editor-tabs {
+  display: flex;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.editor-tab {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.editor-tab.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.editor-window {
+  display: none;
+  padding: var(--spacing-md);
+  height: 300px;
+  overflow-y: auto;
+}
+
+.editor-window.active {
+  display: block;
+}
+
+.editor-window pre {
+  margin: 0;
+  height: 100%;
+}
+
+.editor-window code {
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.preview-container {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-header h3 {
+  margin-bottom: 0;
+}
+
+.preview-frame {
+  flex: 1;
+  min-height: 300px;
+}
+
+#preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: white;
+}
+
+/* Challenges Section */
+.challenges {
+  padding: var(--spacing-xxl) 0;
+}
+
+.challenge-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.challenge-card {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.challenge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.challenge-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.challenge-level {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: var(--spacing-md);
+}
+
+.challenge-level.easy {
+  background-color: var(--success);
+  color: white;
+}
+
+.challenge-level.medium {
+  background-color: var(--warning);
+  color: white;
+}
+
+.challenge-level.hard {
+  background-color: var(--error);
+  color: white;
+}
+
+.challenge-header h3 {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+.challenge-card p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.challenge-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.challenge-footer span {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.challenge-footer i {
+  color: var(--accent);
+  margin-right: var(--spacing-xs);
+}
+
+/* Footer */
+footer {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-xxl) 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.footer-logo {
+  flex: 2;
+  min-width: 250px;
+}
+
+.footer-logo h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-logo p {
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 150px;
+}
+
+.footer-column h3 {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-column ul li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-column ul li a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom p {
+  margin-bottom: 0;
+  color: var(--text-tertiary);
+}
+
+.social-icons {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.social-icons a {
+  color: var(--text-tertiary);
+  font-size: 1.2rem;
+  transition: color var(--transition-fast);
+}
+
+.social-icons a:hover {
+  color: var(--primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero .container {
+    flex-direction: column;
+  }
+  
+  .hero-content,
+  .hero-image {
+    width: 100%;
+  }
+  
+  .hero-content {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .feature-card,
+  .lesson-card,
+  .challenge-card {
+    max-width: 100%;
+  }
+  
+  .code-playground {
+    flex-direction: column;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+  
+  nav ul li {
+    margin-left: var(--spacing-md);
+  }
+  
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+  
+  header .container {
+    flex-wrap: wrap;
+  }
+  
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.7rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  nav ul li {
+    margin-left: var(--spacing-sm);
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+  }
+  
+  .lesson-cards,
+  .challenge-cards {
+    gap: var(--spacing-md);
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}</style></head><body><!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Julian Vanguard | Professional Catalogue</title>
+      <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Archivo+Black&amp;display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+      <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+      </script>
+      <script id="tailwind-config">
+        tailwind.config = {
+        theme: {
+        extend: {
+        colors: {
+        "retro-bg": "#ececec",
+        "retro-paper": "#f5f5f5",
+        "retro-blue": "#000080",
+        "retro-grey": "#808080",
+        "retro-border": "#333333",
+        "retro-text": "#1a1a1a"
+        },
+        fontFamily: {
+        headline: ["'Archivo Black'", "sans-serif"],
+        body: ["'Courier Prime'", "monospace"]
+        },
+        borderWidth: {
+        '3': '3px',
+        '6': '6px',
+        }
+        },
+        },
+        }
+      </script>
+      <style type="text/tailwindcss">
+        @layer base {
+        body {
+        @apply bg-retro-bg text-retro-text font-body;
+        }
+        h1, h2, h3, h4 {
+        @apply font-headline uppercase tracking-tight;
+        }
+        a {
+        @apply text-retro-blue underline hover:bg-retro-blue hover:text-white transition-colors;
+        }
+        section {
+        @apply border-b border-retro-grey/30;
+        }
+        hr {
+        @apply border-t-2 border-retro-border my-8;
+        }
+        }
+        .pixelated {
+        image-rendering: pixelated;
+        filter: contrast(120%) grayscale(100%);
+        }
+        .retro-box {
+        @apply border-2 border-retro-border bg-white p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+        }
+        .retro-btn {
+        @apply border-2 border-retro-border bg-retro-bg px-4 py-2 text-retro-text font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all no-underline;
+        }
+      </style>
+    </head>
+    <body>
+      <nav class="sticky top-0 w-full z-50 bg-retro-blue text-white border-b-2 border-retro-border">
+        <div class="flex flex-wrap justify-between items-center max-w-6xl mx-auto px-4 py-2">
+          <span class="text-lg font-headline tracking-widest">JULIAN_VANGUARD.EXE</span>
+            <div class="flex gap-4 text-xs">
+              <a class="text-white no-underline hover:underline" href="#about">[ABOUT]</a>
+                <a class="text-white no-underline hover:underline" href="#experience">[EXPERIENCE]</a>
+                  <a class="text-white no-underline hover:underline" href="#skills">[SKILLS]</a>
+                    <a class="text-white no-underline hover:underline" href="#contact">[CONTACT]</a>
+                    </div>
+                  </div>
+                </nav>
+                <header class="relative w-full min-h-screen bg-retro-paper border-b-4 border-retro-border flex flex-col">
+                  <div class="max-w-6xl mx-auto px-4 py-12 flex-grow grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 z-10">
+                      <div class="inline-block border-2 border-retro-border bg-yellow-200 px-3 py-1 text-xs font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        Status: Available for Projects
+                      </div>
+                      <h1 class="text-6xl md:text-8xl text-retro-blue leading-none">
+                        Pepe <br/> Pérez
+                      </h1>
+                      <p class="text-xl md:text-2xl font-bold bg-retro-border text-white inline-block px-2">
+                        Caca &amp; Creative Director
+                      </p>
+                      <p class="text-lg leading-tight max-w-lg">
+                        Defining the intersection of structural integrity and digital elegance. Building high-performance systems for global industry leaders.
+                      </p>
+                      <div class="flex flex-wrap gap-4 pt-4">
+                        <a class="retro-btn bg-retro-blue text-white" href="#contact">GET_IN_TOUCH &gt;</a>
+                          <a class="retro-btn" href="#experience">VIEW_WORK.HTML</a>
+                            <a class="retro-btn" href="#">DOWNLOAD_CV.PDF</a>
+                            </div>
+                          </div>
+                          <div class="relative flex justify-center items-center">
+                            <div class="retro-box max-w-sm">
+                              <div class="border border-retro-border overflow-hidden">
+                                <img alt="Professional portrait" class="w-full h-auto pixelated scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ncthVxdFbkaxStRGc6todTk85v-IzFSJZKfoGnejplw-ocI6WzYCkNpEDcn1Y-WJGTJcHo223wOBPeqSE3eu_Rm_vxADXrzXITS172atRCDibLMpD44rSSKRPIbMM8l5g8nFaa8-cTO6fwKLek7F2kbhgtgGhor1QMMua3T2yZIpnndQoTz7ub2A7jQiJtQq1qpjb1P0MZv-AA5IB2aTXCSAvNr-0i93yBsmMvv-v2PLc2jROC6nXpMc01t8uIPpddzXQiXEUMg7"/>
+                              </div>
+                              <div class="mt-2 text-[10px] text-retro-grey uppercase text-center font-bold">
+                                IMG_REF: PORTRAIT_RENDER_01.DIB
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </header>
+                      <section class="py-16 px-4 bg-retro-bg" id="about">
+                        <div class="max-w-6xl mx-auto">
+                          <h2 class="text-3xl mb-8 border-b-4 border-retro-border inline-block">The Vision &amp; Philosophy</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                              <div class="md:col-span-8">
+                                <div class="retro-box mb-8 border-l-8 border-retro-blue">
+                                  <p class="text-xl md:text-2xl leading-tight italic">
+                                    "Design is not just what it looks like and feels like. Design is how it works. My practice is rooted in the belief that complexity should be invisible, leaving only the purity of the experience."
+                                  </p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-normal">
+                                  <p>
+                                    With over 12 years of experience in the luxury sector, I have specialized in creating digital ecosystems that feel as tactile and permanent as physical architecture. My approach combines rigorous data analysis with an uncompromising eye for aesthetic detail.
+                                  </p>
+                                  <p>
+                                    I believe in the "Curated Authority" — a design methodology that prioritizes intentionality over noise. Whether leading a team of 30 or architecting a solo venture, my focus remains on legacy-grade output.
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="md:col-span-4 space-y-4">
+                                <div class="retro-box bg-retro-grey/10 text-xs">
+                                  <h4 class="font-bold mb-2">MANIFESTO_NOTES.TXT</h4>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                      <li>Tactile Durability</li>
+                                        <li>Structural Logic</li>
+                                          <li>Minimal Noise</li>
+                                            <li>High Integrity</li>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </section>
+                                  <section class="py-16 px-4 bg-retro-paper" id="experience">
+                                    <div class="max-w-6xl mx-auto">
+                                      <h2 class="text-3xl mb-12 border-b-4 border-retro-border inline-block">Professional Experience</h2>
+                                        <div class="space-y-4">
+                                          <div class="retro-box flex flex-col md:flex-row gap-6 hover:bg-white transition-colors">
+                                            <div class="md:w-32 flex-shrink-0 font-bold text-retro-blue text-sm">
+                                              [2020 — PRES]
+                                            </div>
+                                            <div class="flex-1 space-y-4">
+                                              <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-retro-grey pb-2">
+                                                <h3 class="text-xl">Chief Creative Architect</h3>
+                                                  <span class="text-retro-grey text-xs uppercase font-bold">@ Stellar Systems Global</span>
+                                                  </div>
+                                                  <p class="text-sm">
+                                                    Spearheading the digital transformation for Fortune 500 companies. Reduced operational overhead by 40% through systemic design audits and the implementation of a proprietary cross-platform component library.
+                                                  </p>
+                                                  <div class="flex flex-wrap gap-2 text-[10px] font-bold">
+                                                    <span class="px-2 py-0.5 border border-retro-border bg-retro-bg">LEADERSHIP</span>
+                                                      <span class="px-2 py-0.5 border border-retro-border bg-retro-bg">SYSTEM_ARCHITECTURE</span>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="retro-box flex flex-col md:flex-row gap-6">
+                                                    <div class="md:w-32 flex-shrink-0 font-bold text-retro-blue text-sm">
+                                                      [2016 — 2020]
+                                                    </div>
+                                                    <div class="flex-1 space-y-4">
+                                                      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-retro-grey pb-2">
+                                                        <h3 class="text-xl">Senior Interaction Designer</h3>
+                                                          <span class="text-retro-grey text-xs uppercase font-bold">@ Lumina Studios</span>
+                                                          </div>
+                                                          <p class="text-sm">
+                                                            Led the design of three award-winning mobile applications. Focused on gesture-based interactions and emotional design paradigms that increased user retention by 25% year-over-year.
+                                                          </p>
+                                                          <div class="flex flex-wrap gap-2 text-[10px] font-bold">
+                                                            <span class="px-2 py-0.5 border border-retro-border bg-retro-bg">MOBILE_FIRST</span>
+                                                              <span class="px-2 py-0.5 border border-retro-border bg-retro-bg">UI/UX_DEV</span>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="retro-box flex flex-col md:flex-row gap-6">
+                                                            <div class="md:w-32 flex-shrink-0 font-bold text-retro-blue text-sm">
+                                                              [2012 — 2016]
+                                                            </div>
+                                                            <div class="flex-1 space-y-4">
+                                                              <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-retro-grey pb-2">
+                                                                <h3 class="text-xl">Graphic Strategist</h3>
+                                                                  <span class="text-retro-grey text-xs uppercase font-bold">@ Blueprint Agency</span>
+                                                                  </div>
+                                                                  <p class="text-sm">
+                                                                    Developed core visual identities for emerging tech startups in the Silicon Valley ecosystem. Managed end-to-end production of brand guidelines and stakeholder presentations.
+                                                                  </p>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </section>
+                                                        <section class="py-16 px-4 bg-retro-bg" id="skills">
+                                                          <div class="max-w-6xl mx-auto">
+                                                            <h2 class="text-3xl mb-12 border-b-4 border-retro-border inline-block">Core Competencies</h2>
+                                                              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                                                <div class="retro-box md:col-span-2">
+                                                                  <h4 class="text-xl mb-6 flex items-center gap-2">
+                                                                    <span class="material-symbols-outlined">terminal</span> Technical_Ecosystem
+                                                                    </h4>
+                                                                    <div class="space-y-6">
+                                                                      <div>
+                                                                        <div class="flex justify-between mb-1 text-xs font-bold uppercase">
+                                                                          <span>System Architecture</span>
+                                                                            <span>98%</span>
+                                                                            </div>
+                                                                            <div class="w-full bg-retro-grey/20 border border-retro-border h-4">
+                                                                              <div class="bg-retro-blue h-full" style="width: 98%">
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div>
+                                                                            <div class="flex justify-between mb-1 text-xs font-bold uppercase">
+                                                                              <span>Advanced Prototyping</span>
+                                                                                <span>92%</span>
+                                                                                </div>
+                                                                                <div class="w-full bg-retro-grey/20 border border-retro-border h-4">
+                                                                                  <div class="bg-retro-blue h-full" style="width: 92%">
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div>
+                                                                                <div class="flex justify-between mb-1 text-xs font-bold uppercase">
+                                                                                  <span>Front-end Strategy</span>
+                                                                                    <span>85%</span>
+                                                                                    </div>
+                                                                                    <div class="w-full bg-retro-grey/20 border border-retro-border h-4">
+                                                                                      <div class="bg-retro-blue h-full" style="width: 85%">
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </div>
+                                                                                </div>
+                                                                                <div class="mt-8 pt-4 border-t border-retro-grey/30 flex flex-wrap gap-2">
+                                                                                  <span class="text-xs font-bold underline">REACT.JS</span>
+                                                                                    <span class="text-xs font-bold underline">FIGMA.APP</span>
+                                                                                      <span class="text-xs font-bold underline">TAILWIND.CSS</span>
+                                                                                        <span class="text-xs font-bold underline">PYTHON.EXE</span>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <div class="space-y-6">
+                                                                                        <div class="retro-box bg-retro-blue text-white">
+                                                                                          <h4 class="text-lg mb-2">LEADERSHIP</h4>
+                                                                                            <p class="text-xs leading-tight opacity-90">
+                                                                                              Mentoring teams of 15+ designers. Master of cross-functional communication and agile methodology.
+                                                                                            </p>
+                                                                                          </div>
+                                                                                          <div class="retro-box flex flex-col items-center justify-center text-center">
+                                                                                            <h4 class="text-4xl">ENG</h4>
+                                                                                              <span class="text-[10px] uppercase font-bold text-retro-grey">Native Proficiency</span>
+                                                                                              </div>
+                                                                                              <div class="retro-box flex gap-4 items-center bg-yellow-100">
+                                                                                                <span class="material-symbols-outlined text-4xl">military_tech</span>
+                                                                                                  <div>
+                                                                                                    <h4 class="text-sm">Awwwards 2023</h4>
+                                                                                                      <p class="text-[10px] font-bold">Site of the Year Nominee</p>
+                                                                                                      </div>
+                                                                                                    </div>
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </div>
+                                                                                            </section>
+                                                                                            <section class="py-16 px-4 bg-retro-paper">
+                                                                                              <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                                                                                                <div id="education">
+                                                                                                  <h2 class="text-2xl mb-8 border-b-2 border-retro-border inline-block">Academic Foundations</h2>
+                                                                                                    <div class="space-y-8">
+                                                                                                      <div class="border-l-4 border-retro-blue pl-6">
+                                                                                                        <span class="text-xs font-bold text-retro-grey block mb-1">2010 — 2014</span>
+                                                                                                          <h3 class="text-lg">Master of Interaction Design</h3>
+                                                                                                            <p class="text-sm text-retro-grey">Royal College of Art, London</p>
+                                                                                                            </div>
+                                                                                                            <div class="border-l-4 border-retro-blue pl-6">
+                                                                                                              <span class="text-xs font-bold text-retro-grey block mb-1">2006 — 2010</span>
+                                                                                                                <h3 class="text-lg">BA in Visual Communication</h3>
+                                                                                                                  <p class="text-sm text-retro-grey">Design Academy Eindhoven</p>
+                                                                                                                  </div>
+                                                                                                                </div>
+                                                                                                              </div>
+                                                                                                              <div id="volunteering">
+                                                                                                                <h2 class="text-2xl mb-8 border-b-2 border-retro-border inline-block">Social Impact</h2>
+                                                                                                                  <div class="space-y-4">
+                                                                                                                    <div class="retro-box">
+                                                                                                                      <h3 class="text-lg mb-2">Mentor at Design For Good</h3>
+                                                                                                                        <p class="text-xs leading-tight mb-4">Providing 100+ hours of pro-bono mentoring annually to young designers in developing economies.</p>
+                                                                                                                          <a class="text-xs font-bold" href="#">VIEW_CASE_STUDIES.HTM</a>
+                                                                                                                          </div>
+                                                                                                                          <div class="retro-box">
+                                                                                                                            <h3 class="text-lg mb-2">Sustainability Lead</h3>
+                                                                                                                              <p class="text-xs leading-tight">Organizing local coastal clean-up operations and advocating for carbon-neutral digital workflows.</p>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                          </div>
+                                                                                                                        </div>
+                                                                                                                      </section>
+                                                                                                                      <section class="py-16 px-4 bg-retro-blue text-white" id="contact">
+                                                                                                                        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                                                                                                                          <div>
+                                                                                                                            <h2 class="text-5xl mb-6 leading-none">Let's build <br/> something eternal.</h2>
+                                                                                                                              <p class="text-sm opacity-80 mb-8 max-w-sm">
+                                                                                                                                Open for strategic partnerships, executive consulting, and selective creative lead roles.
+                                                                                                                              </p>
+                                                                                                                              <div class="space-y-4 text-xs font-bold uppercase tracking-widest">
+                                                                                                                                <div class="flex items-center gap-3">
+                                                                                                                                  <span class="material-symbols-outlined">mail</span>
+                                                                                                                                    <span>hello@julianvanguard.design</span>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="flex items-center gap-3">
+                                                                                                                                      <span class="material-symbols-outlined">location_on</span>
+                                                                                                                                        <span>Zurich, Switzerland</span>
+                                                                                                                                        </div>
+                                                                                                                                      </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="retro-box text-retro-text bg-white">
+                                                                                                                                      <h4 class="mb-4 text-retro-blue">SEND_ENQUIRY.MSG</h4>
+                                                                                                                                        <form action="#" class="space-y-4">
+                                                                                                                                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                                                                                            <div class="space-y-1">
+                                                                                                                                              <label class="text-[10px] font-bold uppercase">_NAME</label>
+                                                                                                                                                <input class="w-full bg-retro-bg border-2 border-retro-border p-2 text-sm focus:bg-white outline-none" placeholder="Jane Doe" type="text"/>
+                                                                                                                                              </div>
+                                                                                                                                              <div class="space-y-1">
+                                                                                                                                                <label class="text-[10px] font-bold uppercase">_EMAIL</label>
+                                                                                                                                                  <input class="w-full bg-retro-bg border-2 border-retro-border p-2 text-sm focus:bg-white outline-none" placeholder="jane@company.com" type="email"/>
+                                                                                                                                                </div>
+                                                                                                                                              </div>
+                                                                                                                                              <div class="space-y-1">
+                                                                                                                                                <label class="text-[10px] font-bold uppercase">_MESSAGE</label>
+                                                                                                                                                  <textarea class="w-full bg-retro-bg border-2 border-retro-border p-2 text-sm focus:bg-white outline-none" placeholder="Enter message here..." rows="4">
+                                                                                                                                                  </textarea>
+                                                                                                                                                </div>
+                                                                                                                                                <button class="retro-btn w-full bg-retro-blue text-white py-3 uppercase">
+                                                                                                                                                  EXECUTE_SEND
+                                                                                                                                                </button>
+                                                                                                                                              </form>
+                                                                                                                                            </div>
+                                                                                                                                          </div>
+                                                                                                                                        </section>
+                                                                                                                                        <footer class="bg-retro-bg py-8 px-4 border-t-4 border-retro-border">
+                                                                                                                                          <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                                                                                                                                            <div>
+                                                                                                                                              <span class="text-xl font-headline text-retro-blue">PORTFOLIO_V1.0</span>
+                                                                                                                                                <p class="text-[10px] text-retro-grey mt-1 font-bold">© 2024 THE CURATED AUTHORITY. VER: 1.0.4.5</p>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="flex gap-6 text-[10px] font-bold uppercase">
+                                                                                                                                                  <a href="#">LINKEDIN</a>
+                                                                                                                                                    <a href="#">GITHUB</a>
+                                                                                                                                                      <a href="#">DRIBBBLE</a>
+                                                                                                                                                        <a href="#contact">CONTACT</a>
+                                                                                                                                                        </div>
+                                                                                                                                                      </div>
+                                                                                                                                                    </footer>
+                                                                                                                                                  </body>
+                                                                                                                                                </html><script>// JavaScript for interaction
+const button = document.querySelector('.btn.primary');
+const title = document.querySelector('.hero-content h1');
+
+if (button && title) {
+  button.addEventListener('click', function() {
+    title.style.color = '#4F46E5';
+    alert('Welcome to CodeCraft Academy!');
+  });
+}</script></body></html>
